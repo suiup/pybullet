@@ -14,7 +14,13 @@ p.setAdditionalSearchPath(pybullet_data.getDataPath())
 p.setPhysicsEngineParameter(numSolverIterations=10)
 
 # 载入地面模型，useMaximalCoordinates加大坐标刻度可以加快加载
-p.loadURDF("plane100.urdf", useMaximalCoordinates=True)
+# p.loadURDF("plane100.urdf", useMaximalCoordinates=True)
+
+terrainShape = p.createCollisionShape(shapeType=p.GEOM_HEIGHTFIELD, meshScale=[.5, .5, 2.5],
+                                          fileName="heightmaps/ground0.txt", heightfieldTextureScaling=128)
+terrain = p.createMultiBody(0, terrainShape)
+p.resetBasePositionAndOrientation(terrain, [0, 0, 0], [0, 0, 0, 1])
+p.changeVisualShape(terrain, -1, rgbaColor=[1, 1, 1, 1])
 
 
 # 创建视觉模型和碰撞箱模型时共用的两个参数
