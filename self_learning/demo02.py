@@ -1,3 +1,6 @@
-import random
+
+
+data = range(5)
+
 
 

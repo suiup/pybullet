@@ -29,13 +29,15 @@ p.configureDebugVisualizer(p.COV_ENABLE_RENDERING, 0)
 #                                       numHeightfieldColumns=50, # 有多少列
 #                                       heightfieldData=heightfieldData)  # 生成地形的数据
 
-terrainShape = p.createCollisionShape(shapeType=p.GEOM_HEIGHTFIELD, meshScale=[.5, .5, 3],
-                                          fileName="data/terrain_ground.txt", heightfieldTextureScaling=128)
+terrainShape = p.createCollisionShape(shapeType=p.GEOM_HEIGHTFIELD, meshScale=[1, 1, .08],
+                                          fileName="data/terrain_100.txt", heightfieldTextureScaling=50)
 
 
 terrain = p.createMultiBody(0, terrainShape)
 p.resetBasePositionAndOrientation(terrain, [0, 0, 0], [0, 0, 0, 1])
-p.changeVisualShape(terrain, -1, rgbaColor=[0.5, 0.5, 0.5, 1])
+
+# grass 107, 142, 35    ground 199,97,20  yellow 255,227,132
+p.changeVisualShape(terrain, -1, rgbaColor=[1, 227 / 255.0, 132 / 255.0 ,1])
 
 
 p.configureDebugVisualizer(p.COV_ENABLE_RENDERING, 1)
