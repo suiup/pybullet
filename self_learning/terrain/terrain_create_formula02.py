@@ -3,7 +3,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-z = np.array([[x**2 + y**2 for x in range(20)] for y in range(20)])
+z = np.array([[x**2 for x in np.linspace(0,2,20)] for y in range(20)])
+
+list = [i for i in z]
+dataStr = ""
+for i in list:
+    dataStr += ",\t".join(('%.5f' % j) for j in i) + "\n"
+print(dataStr)
+with open("test.txt", "w") as f:
+    f.write(dataStr)
+
 x, y = np.meshgrid(range(z.shape[0]), range(z.shape[1]))
 
 # show hight map in 3d

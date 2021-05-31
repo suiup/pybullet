@@ -7,11 +7,11 @@ p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
 p.configureDebugVisualizer(p.COV_ENABLE_RENDERING, 0)
-data = [0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0]
+data = [1, 2, 3, 4, 5,
+        1, 2, 3, 4, 5,
+        1, 2, 3, 4, 5,
+        1, 2, 3, 4, 5,
+        1, 2, 3, 4, 5]
 
 
 heightfieldData= data

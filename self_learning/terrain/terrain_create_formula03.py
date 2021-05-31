@@ -10,8 +10,17 @@ x,y=np.meshgrid(a,b)
 
 z=x**2+y**2
 
-fig = go.Figure(data=[
-    go.Surface(x = x, y = y, z = z),
-])
+list = [i for i in z]
+dataStr = ""
+for i in list:
+    dataStr += ",\t".join(('%.5f' % j) for j in i) + "\n"
+print(dataStr)
+with open("test.txt", "w") as f:
+    f.write(dataStr)
 
-fig.show()
+#
+# fig = go.Figure(data=[
+#     go.Surface(x = x, y = y, z = z),
+# ])
+#
+# fig.show()
