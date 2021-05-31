@@ -19,8 +19,8 @@ with open("test.txt", "w") as f:
     f.write(dataStr)
 
 
-# fig = go.Figure(data=[
-#     go.Surface(x=x, y=y, z=z),
-# ])
-#
-# fig.show()
+fig = go.Figure(data=[
+    go.Surface(x=x, y=y, z=z),
+])
+
+fig.show()

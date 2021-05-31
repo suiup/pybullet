@@ -1,10 +1,12 @@
 import numpy as np
+import math
 
 import plotly.graph_objs as go
 
-a=np.linspace(-2,2,50)
 
-b=np.linspace(-2,2,50)
+a=np.linspace(-2,2,20)
+
+b=np.linspace(-2,2,20)
 
 x,y=np.meshgrid(a,b)
 
@@ -18,8 +20,8 @@ print(dataStr)
 with open("test.txt", "w") as f:
     f.write(dataStr)
 
-# fig = go.Figure(data=[
-#     go.Surface(x = x, y = y, z = z),
-# ])
-#
-# fig.show()
+fig = go.Figure(data=[
+    go.Surface(x = x, y = y, z = z),
+])
+
+fig.show()

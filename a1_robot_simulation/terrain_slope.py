@@ -7,7 +7,7 @@ p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
 p.configureDebugVisualizer(p.COV_ENABLE_RENDERING, 0)
-
+# data = np.random.uniform(-0.5,0.5, size=(50,50))
 terrainShape = p.createCollisionShape(shapeType=p.GEOM_HEIGHTFIELD, meshScale=[1, 1, 1],
                                           fileName="data/terrain_ground_slope.txt", heightfieldTextureScaling=400)
 
