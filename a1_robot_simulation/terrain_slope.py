@@ -13,7 +13,7 @@ terrainShape = p.createCollisionShape(shapeType=p.GEOM_HEIGHTFIELD, meshScale=[1
 
 
 terrain = p.createMultiBody(0, terrainShape)
-p.resetBasePositionAndOrientation(terrain, [0, 8, 2], [0, 0, 0, 1])
+p.resetBasePositionAndOrientation(terrain, [8, 0, 2], [0, 0, 0, 1])
 
 # grass 107, 142, 35    ground 199,97,20  yellow 255,227,132
 p.changeVisualShape(terrain, -1, rgbaColor=[1, 227 / 255.0, 132 / 255.0 ,1])

@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-z = np.array([[x**2 for x in np.linspace(0,2,20)] for y in range(20)])
-
+# z = np.array([[x**2 for x in np.linspace(0,2,20)] for y in range(20)])
+z = np.array([[x**2 for x in np.linspace(0,2,20)] for y in range(20)]).transpose()
 list = [i for i in z]
 dataStr = ""
 for i in list:
