@@ -6,6 +6,7 @@ with open("data.txt", "r") as f:
         list.append(line)
 
 print(list)
-str = ",\t".join(i for i in list)
-with open("test.txt", "w") as f:
-    f.write(str)
+
+# str = ",\t".join(i for i in list)
+# with open("test.txt", "w") as f:
+#     f.write(str)
