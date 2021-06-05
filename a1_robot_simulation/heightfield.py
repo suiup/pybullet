@@ -40,9 +40,9 @@ if heightfieldSource == useProgrammatic:
 
 if heightfieldSource == useDeepLocoCSV:
     terrainShape = p.createCollisionShape(shapeType=p.GEOM_HEIGHTFIELD, meshScale=[.5, .5, 2.5],
-                                          fileName="heightmaps/ground0.txt", heightfieldTextureScaling=128)
+                                          fileName="heightmaps/ground2.txt", heightfieldTextureScaling=128)
     terrain = p.createMultiBody(0, terrainShape)
-    p.resetBasePositionAndOrientation(terrain, [0, 0, 0], [0, 0, 0, 1])
+    p.resetBasePositionAndOrientation(terrain, [0, 0, -2], [0, 0, 0, 1])
 
 if heightfieldSource == useTerrainFromPNG:
     terrainShape = p.createCollisionShape(shapeType=p.GEOM_HEIGHTFIELD, meshScale=[.1, .1, 24],

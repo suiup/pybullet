@@ -1,6 +1,6 @@
 import numpy as np
 
-data = np.random.uniform(-5.0,5.0, size=(100, 100))
+data = np.random.uniform(-5.0,5.0, size=(20, 20))
 list = [i for i in data]
 dataStr = ""
 for i in list:

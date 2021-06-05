@@ -1,8 +1,16 @@
 import numpy as np
+
 import plotly.graph_objs as go
 
-data = np.random.uniform(-0.5,0.5, size=(50,50))
-list = [i for i in data]
+a=np.linspace(-2,2,20)
+
+b=np.linspace(-2,2,20)
+
+x,y=np.meshgrid(a,b)
+
+z= -0.5 * x**2-0.5 * y**2
+
+list = [i for i in z]
 dataStr = ""
 for i in list:
     dataStr += ",\t".join(('%.5f' % j) for j in i) + "\n"
@@ -12,7 +20,7 @@ with open("test.txt", "w") as f:
 
 
 fig = go.Figure(data=[
-    go.Surface(z=data),
+    go.Surface(x = x, y = y, z = z),
 ])
 
 fig.show()

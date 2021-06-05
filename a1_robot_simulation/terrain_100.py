@@ -28,7 +28,7 @@ p.configureDebugVisualizer(p.COV_ENABLE_RENDERING, 0)
 #                                       numHeightfieldRows=50, # 有多少行
 #                                       numHeightfieldColumns=50, # 有多少列
 #                                       heightfieldData=heightfieldData)  # 生成地形的数据
-# z = np.array([[x**2 for x in np.linspace(0,2,20)] for y in range(20)])
+# data = np.random.uniform(-0.5,0.5, size=(50,50))
 terrainShape = p.createCollisionShape(shapeType=p.GEOM_HEIGHTFIELD, meshScale=[1, 1, 1],
                                           fileName="data/terrain_100.txt", heightfieldTextureScaling=500)
 
