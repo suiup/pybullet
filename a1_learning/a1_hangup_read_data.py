@@ -9,7 +9,7 @@ startPos = [0,0,1]
 startOrientation = p.getQuaternionFromEuler([0,0,0])
 robot_id = p.loadURDF("a1/a1.urdf",startPos, startOrientation)
 
-# joint information
+# Joint information
 joint_num = p.getNumJoints(robot_id)
 
 # The available joint
@@ -21,14 +21,8 @@ joint_link_tuples = [(p.getJointInfo(robot_id, i)[0], p.getJointInfo(robot_id, i
     for i in range(p.getNumJoints(robot_id))
     if p.getJointInfo(robot_id, i)[2] != p.JOINT_FIXED]
 
-position = [p.addUserDebugParameter(
-    paramName=joint_link_tuples[i][1] + " " +str(i),
-    rangeMin=joint_link_tuples[i][2],
-    rangeMax=joint_link_tuples[i][3],
-    startValue=0
-) for i in range(len(joint_link_tuples))]
 
-# add button
+# Add button
 btn = p.addUserDebugParameter(
     paramName="reset",
     rangeMin=1,
@@ -40,32 +34,42 @@ previous_btn_value = p.readUserDebugParameter(btn)
 p.createConstraint(robot_id,-1, -1, -1,p.JOINT_FIXED,[0, 0, 0], [0, 0, 0], [0, 0, 1])
 
 
+numbers = []
+with open("data.txt", "r") as f:
+    lines = f.readlines()
+    for line in lines:
+        print(line)
+        numbers.append([float(x) for x in line.split(",")])
+
+length = len(numbers)
+p.setPhysicsEngineParameter(numSolverIterations=9)
+p.setPhysicsEngineParameter(enableConeFriction=0)
 p.setRealTimeSimulation(1)
-# Turn on real-time simulation
+index = 0
+episode = 0
 while True:
     p.stepSimulation()
     # Use the parameter value of the control as input to control the robot, and obtain the value of each group of controls
-    indices = [i for i, _,_,_ in joint_link_tuples]
-    positions = [p.readUserDebugParameter(param_id) for param_id in position]
-    # velocity = [p.readUserDebugParameter(param_id) for param_id in joint_velocities_params_ids]
-    # forces = [p.readUserDebugParameter(param_id) for param_id in joint_force_params_ids]
-    p.setJointMotorControlArray(
-        bodyUniqueId=robot_id,
-        jointIndices=indices,
-        controlMode=p.POSITION_CONTROL,
-        targetPositions=positions,
-        # targetVelocities = velocity,
-        # forces=forces,
-
-    )
-    # If the cumulative value of the button changes, it means clicked
-    if p.readUserDebugParameter(btn) != previous_btn_value:
-        # reset velocity
-        for i in range(p.getNumJoints(robot_id)):
-            p.setJointMotorControl2(robot_id, i, p.VELOCITY_CONTROL, 0, 0)
-
-        # reset position
-        p.resetBasePositionAndOrientation(robot_id, [0, 0, 1], [0, 0, 0, 1])
-        previous_btn_value = p.readUserDebugParameter(btn)
+    # indices = [1, 3, 4, 6, 8, 9, 11, 13, 14, 16, 18, 19]
+    indices = [1, 3, 4, 6, 8, 9, 11, 13, 14, 16, 18, 19]
+    if(episode < 0):
+        p.setJointMotorControlArray(
+            bodyUniqueId=robot_id,
+            jointIndices=indices,
+            controlMode=p.POSITION_CONTROL,
+            targetPositions=[0, 0.9, -1.8] * 4,
+        )
+    else:
+        index += 1
+        if (index >= length):
+            index = length - 1
+        p.setJointMotorControlArray(
+            bodyUniqueId=robot_id,
+            jointIndices=indices,
+            controlMode=p.POSITION_CONTROL,
+            targetPositions=(numbers[index]),
+        )
+    episode += 1
+    time.sleep(5/100)
 
 p.disconnect()

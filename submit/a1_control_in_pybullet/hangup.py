@@ -1,6 +1,6 @@
 import pybullet as p
 import pybullet_data
-physicsClient = p.connect(p.GUI)#or p.DIRECT for non-graphical version
+physicsClient = p.connect(p.GUI)#Or p.DIRECT for non-graphical version
 p.setAdditionalSearchPath(pybullet_data.getDataPath()) #optionally
 p.setGravity(0,0,-10)
 planeId = p.loadURDF("plane.urdf")
@@ -8,7 +8,7 @@ startPos = [0,0,1]
 startOrientation = p.getQuaternionFromEuler([0,0,0])
 robot_id = p.loadURDF("a1/a1.urdf",startPos, startOrientation)
 
-#the information of A1 joint
+#The information of A1 joint
 joint_num = p.getNumJoints(robot_id)
 print("The number of the A1 joints：", joint_num)
 print("A1 information: ")
